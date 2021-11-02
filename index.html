@@ -2,29 +2,38 @@
 <html>
 <body>
 <title>TTP Web Page </title>
-<h1>My Name is Khalid Boudeqis
-My favorite hobby is pretty simple, it is listening to music.<br> 
- <p>The current time is: 
-<p id="time"></p>
+<h1>My name is Khalid Boudeqis, my favorite hobby is playing soccer.</h1></br>
+The current time is: <button style="color:blue;background-color:gray"  id="time"></button>
+
 <script>
-function displayCurrentTime() {
-  let currentTime = new Date();
-  let hours = currentTime.getHours();
-  let minutes = currentTime.getMinutes();
-  let seconds = currentTime.getSeconds();
-  let amOrPm = hours < 12 ? "AM" : "PM";
-hours = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
-  hours = addZero(hours);
-  minutes = addZero(minutes);
-  seconds = addZero(seconds);
-let timeString = `${hours} : ${minutes} : ${seconds} ${amOrPm}`;
-document.getElementById("time").innerText = timeString;
-  let timer = setTimeout(displayCurrentTime, 1000);
+setInterval(showTime, 1000);
+function showTime() {
+    let time = new Date();
+    let hour = time.getHours();
+    let min = time.getMinutes();
+    let sec = time.getSeconds();
+    am_pm = "AM";
+  
+    if (hour > 12) {
+        hour -= 12;
+        am_pm = " PM";
+    }
+    if (hour == 0) {
+        hr = 12;
+        am_pm = " AM";
+    }
+  
+    hour = hour < 10 ? "0" + hour : hour;
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+  
+    let currentTime = hour + ":" 
+            + min + ":" + sec + am_pm;
+  
+    document.getElementById("time")
+            .innerHTML = currentTime;
 }
-function addZero(component) {
-  return component < 10 ? "0" + component : component;
-}
-displayCurrentTime();
+showTime();
 </script>
 
 </body>
